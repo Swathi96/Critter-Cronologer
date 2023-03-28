@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.udacity.jdnd.course3.critter.entity.Employee;
 import com.udacity.jdnd.course3.critter.entity.Pet;
@@ -47,7 +48,7 @@ public class ScheduleService {
 	public Schedule createSchedule(Schedule Schedule) {
 		return scheduleRepository.save(Schedule);
 	}
-
+	@Transactional
 	public Schedule saveSchedule(Schedule schedule, List<Long> employeeIds, List<Long> petIds) {
 		List<Employee> employees = employeesRepository.findAllById(employeeIds);
 		List<Pet> pets = petRepo.findAllById(petIds);

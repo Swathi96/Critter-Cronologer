@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.udacity.jdnd.course3.critter.entity.Customer;
 import com.udacity.jdnd.course3.critter.entity.Pet;
@@ -22,7 +23,7 @@ public class PetService {
 	public Pet getPet(long petId) {
 		return petRepo.findById(petId).get();
 	}
-
+	@Transactional
 	public Pet savePet(Pet pet) {
 		List<Pet> oldPets = pet.getCustomer().getPets();
 		List<Pet> updatedPets = new ArrayList<Pet>(oldPets);
